@@ -1,0 +1,91 @@
+ <!-- <div class="section">
+          <h2 class="section-title">Pending Tasks</h2>
+          <div v-if="pendingTasks.length > 0">
+            <ul class="task-items">
+              <li v-for="task in pendingTasks" :key="task.title" class="task-item">
+                <div class="btn23">
+
+                  <input type="checkbox" id="complete" v-model="task.status" :checked="task.status == 'complete'"
+                    @change="updateTaskStatus(task.id, 'complete', new Date().toISOString())">
+                  <label :for="'task-' + task.id">{{ task.title }}</label>
+                
+                  <button class="butvn33" @click="removeTask(task.id)">
+                    <FontAwesomeIcon :icon="faTrashIcon" />
+                  </button>
+                </div>
+                <p class="task-description">{{ task.description }}</p>
+                <span class="task-status">{{ task.status }}</span>
+                <div class="task-date">{{ formatDate(task.Date) }}</div>
+                <div class="task-time">{{ formatTime(task.Date) }}</div>
+              </li>
+            </ul>
+          </div>
+          <div v-else>No Pending Task Found!</div> 
+        </div> -->
+      <!-- <div class="section" v-if="completedTasks">
+        <h2 class="section-title">Completed Tasks</h2>
+        <div v-if="completedTasks.length > 0">
+          <ul class="task-items">
+            <li v-for="task in completedTasks" :key="task.id" class="task-item">
+              <div class="btn23">
+                <FontAwesomeIcon :icon="faCheckIcon"
+                  @click="updateTaskStatus(task.id, 'pending', new Date().toISOString())" class="checked" />
+                <label class="task-title">{{ task.title }}</label>
+                <button class="butvn33" @click="removeTask(task.id)">
+                  <FontAwesomeIcon :icon="faTrashIcon" />
+                </button>
+              </div>
+              <p class="task-description">{{ task.description }}</p>
+              <div class="task-date">{{ formatDate(task.Date) }}</div>
+              <div class="task-time">{{ formatTime(task.Date) }}</div>
+            </li>
+          </ul>
+        </div>
+        <div v-else>No Completed Task Found!</div>
+      </div>-->
+    
+
+      const pendingTasks = computed(() => searchingTask.value.filter(task => task.status === 'pending'));
+const completedTasks = computed(() => searchingTask.value.filter(task => task.status === 'complete'));
+
+
+
+
+
+
+
+
+
+
+<template>
+    <div>
+      <!-- Your task list content -->
+  
+      <!-- Pagination Component -->
+      <pagination :per-page="perPage" :data="tasks" @paginate="paginate"></pagination>
+    </div>
+  </template>
+  
+  <script>
+  import Pagination from 'vue-pagination-component';
+  
+  export default {
+    components: {
+      Pagination,
+    },
+    data() {
+      return {
+        tasks: [], // Your task data
+        currentPage: 1,
+        perPage: 10, // Number of items per page
+      };
+    },
+    methods: {
+      paginate(page) {
+        // Handle pagination change
+        this.currentPage = page;
+      },
+    },
+  };
+  </script>
+  
